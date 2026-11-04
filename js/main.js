@@ -521,5 +521,166 @@ document.addEventListener('DOMContentLoaded', () => {
     revealElements.forEach(el => el.classList.add('revealed'));
   }
 
+  // --- 12. Animated Number Counters ---
+  const counters = document.querySelectorAll('.counter');
+  if (counters.length > 0) {
+    const runCounter = (el) => {
+      const target = parseFloat(el.getAttribute('data-target')) || 0;
+      const isDecimal = el.getAttribute('data-decimals') === '1';
+      const duration = 1800;
+      const startTime = performance.now();
+
+      const updateCount = (currentTime) => {
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        // Ease-out cubic
+        const easeProgress = 1 - Math.pow(1 - progress, 3);
+        const currentVal = target * easeProgress;
+
+        el.textContent = isDecimal ? currentVal.toFixed(1) : Math.floor(currentVal);
+
+        if (progress < 1) {
+          requestAnimationFrame(updateCount);
+        } else {
+          el.textContent = isDecimal ? target.toFixed(1) : target;
+        }
+      };
+      requestAnimationFrame(updateCount);
+    };
+
+    if ('IntersectionObserver' in window) {
+      const counterObserver = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            runCounter(entry.target);
+            obs.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.3 });
+      counters.forEach(c => counterObserver.observe(c));
+    } else {
+      counters.forEach(c => runCounter(c));
+    }
+  }
+
+  // --- 13. Interactive 3D Card Tilt with Dynamic Glare ---
+  const tiltCards = document.querySelectorAll('.tilt-card');
+  tiltCards.forEach(card => {
+    // Add glare element if not already present
+    if (!card.querySelector('.tilt-glare')) {
+      const glare = document.createElement('div');
+      glare.className = 'tilt-glare';
+      card.appendChild(glare);
+    }
+
+    let rect = card.getBoundingClientRect();
+    card.addEventListener('mouseenter', () => {
+      rect = card.getBoundingClientRect();
+    });
+
+    card.addEventListener('mousemove', (e) => {
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const xPct = (x / rect.width) * 100;
+      const yPct = (y / rect.height) * 100;
+
+      // Calculate tilt degrees (max 6 deg for subtle luxury feel)
+      const rotateY = ((x - rect.width / 2) / (rect.width / 2)) * 6;
+      const rotateX = -((y - rect.height / 2) / (rect.height / 2)) * 6;
+
+      card.style.setProperty('--mouse-x', `${xPct}%`);
+      card.style.setProperty('--mouse-y', `${yPct}%`);
+      card.style.transform = `perspective(1000px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg) translateY(-6px)`;
+    });
+
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px)';
+    });
+  });
+
+  // --- 14. Luxury Ambient Golden Embers Floating in Hero Background ---
+  const canvas = document.getElementById('heroParticlesCanvas');
+  if (canvas) {
+    const ctx = canvas.getContext('2d');
+    let width = canvas.width = canvas.parentElement.offsetWidth;
+    let height = canvas.height = canvas.parentElement.offsetHeight;
+
+    window.addEventListener('resize', () => {
+      if (!canvas.parentElement) return;
+      width = canvas.width = canvas.parentElement.offsetWidth;
+      height = canvas.height = canvas.parentElement.offsetHeight;
+    }, { passive: true });
+
+    const particleCount = 28;
+    const particles = [];
+    for (let i = 0; i < particleCount; i++) {
+      particles.push({
+        x: Math.random() * width,
+        y: Math.random() * height,
+        radius: Math.random() * 2.2 + 0.8,
+        speedY: Math.random() * 0.4 + 0.15,
+        speedX: (Math.random() - 0.5) * 0.3,
+        alpha: Math.random() * 0.6 + 0.2,
+        pulseSpeed: Math.random() * 0.02 + 0.01,
+        increasing: Math.random() > 0.5
+      });
+    }
+
+    let animationFrameId;
+    const animateParticles = () => {
+      ctx.clearRect(0, 0, width, height);
+
+      particles.forEach(p => {
+        // Move upward gently
+        p.y -= p.speedY;
+        p.x += p.speedX;
+
+        // Reset if drifted out
+        if (p.y < -10) {
+          p.y = height + 10;
+          p.x = Math.random() * width;
+        }
+        if (p.x < -10) p.x = width + 10;
+        if (p.x > width + 10) p.x = -10;
+
+        // Alpha pulsing
+        if (p.increasing) {
+          p.alpha += p.pulseSpeed;
+          if (p.alpha >= 0.7) p.increasing = false;
+        } else {
+          p.alpha -= p.pulseSpeed;
+          if (p.alpha <= 0.15) p.increasing = true;
+        }
+
+        // Render golden glowing particle
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(245, 158, 11, ${p.alpha})`;
+        ctx.shadowBlur = 8;
+        ctx.shadowColor = 'rgba(251, 191, 36, 0.8)';
+        ctx.fill();
+      });
+
+      animationFrameId = requestAnimationFrame(animateParticles);
+    };
+
+    // Pause when hero is not visible to conserve battery & CPU
+    if ('IntersectionObserver' in window) {
+      const heroObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            if (!animationFrameId) animateParticles();
+          } else {
+            cancelAnimationFrame(animationFrameId);
+            animationFrameId = null;
+          }
+        });
+      }, { threshold: 0.1 });
+      heroObserver.observe(canvas.parentElement);
+    } else {
+      animateParticles();
+    }
+  }
+
   console.log("Mama Bhanja Interior UI Engine Initialized Successfully.");
 });

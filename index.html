@@ -53,7 +53,7 @@
   </script>
 
   <!-- Custom Stylesheet -->
-  <link rel="stylesheet" href="css/style.css?v=2.2">
+  <link rel="stylesheet" href="css/style.css?v=2.3">
 
   <!-- LocalBusiness Schema.org JSON-LD -->
   <script type="application/ld+json">
@@ -209,6 +209,8 @@
     <!-- Ambient glowing blur backdrop -->
     <div class="absolute top-1/4 -left-32 w-96 h-96 bg-amber-500/10 rounded-full blur-[120px] pointer-events-none"></div>
     <div class="absolute top-1/2 -right-32 w-96 h-96 bg-amber-600/10 rounded-full blur-[140px] pointer-events-none"></div>
+    <!-- Luxury Golden Floating Particle Canvas -->
+    <canvas id="heroParticlesCanvas" class="absolute inset-0 w-full h-full pointer-events-none z-0"></canvas>
 
     <div class="max-w-7xl mx-auto px-4 sm:px-8 relative z-10">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
@@ -262,20 +264,20 @@
 
           <!-- Trust Badges Grid -->
           <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-6 border-t border-stone-800/80">
-            <div>
-              <div class="text-amber-400 font-heading font-black text-2xl lg:text-3xl">15+ Years</div>
+            <div class="reveal-init">
+              <div class="text-amber-400 font-heading font-black text-2xl lg:text-3xl"><span class="counter" data-target="15">0</span>+ Years</div>
               <div class="text-xs text-stone-400 mt-0.5 font-medium">Craftsmanship in Lucknow</div>
             </div>
-            <div>
-              <div class="text-amber-400 font-heading font-black text-2xl lg:text-3xl">850+</div>
+            <div class="reveal-init delay-100">
+              <div class="text-amber-400 font-heading font-black text-2xl lg:text-3xl"><span class="counter" data-target="850">0</span>+</div>
               <div class="text-xs text-stone-400 mt-0.5 font-medium">Homes Transformed</div>
             </div>
-            <div>
-              <div class="text-amber-400 font-heading font-black text-2xl lg:text-3xl">100%</div>
+            <div class="reveal-init delay-200">
+              <div class="text-amber-400 font-heading font-black text-2xl lg:text-3xl"><span class="counter" data-target="100">0</span>%</div>
               <div class="text-xs text-stone-400 mt-0.5 font-medium">BWP Waterproof Marine Ply</div>
             </div>
-            <div>
-              <div class="text-amber-400 font-heading font-black text-2xl lg:text-3xl">4.9 ★</div>
+            <div class="reveal-init delay-300">
+              <div class="text-amber-400 font-heading font-black text-2xl lg:text-3xl"><span class="counter" data-target="4.9" data-decimals="1">0</span> ★</div>
               <div class="text-xs text-stone-400 mt-0.5 font-medium">Gomti Nagar &amp; Matiyari</div>
             </div>
           </div>
@@ -286,7 +288,7 @@
           <!-- Glow rim -->
           <div class="absolute -inset-1 rounded-3xl bg-gradient-to-r from-amber-500 to-amber-700 opacity-30 blur-xl"></div>
           
-          <div class="relative rounded-3xl overflow-hidden bg-brand-card border border-amber-500/30 p-6 md:p-8 shadow-2xl space-y-6">
+          <div class="tilt-card card-luxury relative rounded-3xl overflow-hidden bg-brand-card border border-amber-500/30 p-6 md:p-8 shadow-2xl space-y-6">
             <!-- Header of card -->
             <div class="flex items-center gap-4 pb-5 border-b border-stone-800">
               <div class="w-16 h-16 rounded-2xl overflow-hidden border-2 border-amber-500 shrink-0 shadow-md">
@@ -358,11 +360,11 @@
       </div>
 
       <!-- Real Banner Image Display with Luxury Frame -->
-      <div class="relative rounded-3xl overflow-hidden border-2 border-amber-500/50 shadow-2xl shadow-amber-500/10 group bg-stone-950">
+      <div class="tilt-card glow-neon-border relative rounded-3xl overflow-hidden shadow-2xl shadow-amber-500/20 group bg-stone-950">
         <img 
           src="images/banner.jpg" 
           alt="Mama Bhanja Interior Signboard - Home Decor &amp; Renovation - Director Prof. Vijay Sharma 8354099023" 
-          class="w-full h-auto object-cover transform group-hover:scale-[1.01] transition-transform duration-500">
+          class="w-full h-auto object-cover transform group-hover:scale-[1.02] transition-transform duration-500">
         <div class="absolute inset-0 ring-1 ring-inset ring-white/10 pointer-events-none rounded-3xl"></div>
       </div>
 
@@ -1046,7 +1048,7 @@
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         
         <!-- P1: Modular Kitchen -->
-        <div class="portfolio-card card-luxury reveal-init flex flex-col bg-brand-card rounded-2xl overflow-hidden border border-stone-800 cursor-pointer group"
+        <div class="portfolio-card card-luxury tilt-card reveal-init flex flex-col bg-brand-card rounded-2xl overflow-hidden border border-stone-800 cursor-pointer group"
              data-category="kitchen"
              data-title="Matte Charcoal Modular Kitchen"
              data-loc="Gomti Nagar Extension, Lucknow"
@@ -1070,7 +1072,7 @@
         </div>
 
         <!-- P2: Oak Island Kitchen -->
-        <div class="portfolio-card card-luxury reveal-init delay-100 flex flex-col bg-brand-card rounded-2xl overflow-hidden border border-stone-800 cursor-pointer group"
+        <div class="portfolio-card card-luxury tilt-card reveal-init delay-100 flex flex-col bg-brand-card rounded-2xl overflow-hidden border border-stone-800 cursor-pointer group"
              data-category="kitchen"
              data-title="European Oak Island Kitchen"
              data-loc="Indira Nagar, Sector 14, Lucknow"
@@ -1094,7 +1096,7 @@
         </div>
 
         <!-- P3: Acrylic White Kitchen -->
-        <div class="portfolio-card card-luxury reveal-init delay-200 flex flex-col bg-brand-card rounded-2xl overflow-hidden border border-stone-800 cursor-pointer group"
+        <div class="portfolio-card card-luxury tilt-card reveal-init delay-200 flex flex-col bg-brand-card rounded-2xl overflow-hidden border border-stone-800 cursor-pointer group"
              data-category="kitchen"
              data-title="High-Gloss White Acrylic Kitchen"
              data-loc="Shaheed Path Villa, Lucknow"
@@ -1118,7 +1120,7 @@
         </div>
 
         <!-- P4: Fluted Glass Wardrobe -->
-        <div class="portfolio-card card-luxury reveal-init flex flex-col bg-brand-card rounded-2xl overflow-hidden border border-stone-800 cursor-pointer group"
+        <div class="portfolio-card card-luxury tilt-card reveal-init flex flex-col bg-brand-card rounded-2xl overflow-hidden border border-stone-800 cursor-pointer group"
              data-category="wardrobe"
              data-title="Smoked Glass Sliding Wardrobe"
              data-loc="Matiyari Chauraha, Lucknow - 226028"
@@ -1142,7 +1144,7 @@
         </div>
 
         <!-- P5: Walk-In Dressing Suite -->
-        <div class="portfolio-card card-luxury reveal-init delay-100 flex flex-col bg-brand-card rounded-2xl overflow-hidden border border-stone-800 cursor-pointer group"
+        <div class="portfolio-card card-luxury tilt-card reveal-init delay-100 flex flex-col bg-brand-card rounded-2xl overflow-hidden border border-stone-800 cursor-pointer group"
              data-category="wardrobe"
              data-title="Bespoke Walk-in Dressing Suite"
              data-loc="Sushant Golf City, Lucknow"
@@ -1166,7 +1168,7 @@
         </div>
 
         <!-- P6: Walnut Master Almirah -->
-        <div class="portfolio-card card-luxury reveal-init delay-200 flex flex-col bg-brand-card rounded-2xl overflow-hidden border border-stone-800 cursor-pointer group"
+        <div class="portfolio-card card-luxury tilt-card reveal-init delay-200 flex flex-col bg-brand-card rounded-2xl overflow-hidden border border-stone-800 cursor-pointer group"
              data-category="wardrobe"
              data-title="Full-Height Walnut Master Almirah"
              data-loc="Aliganj, Lucknow"
@@ -1190,7 +1192,7 @@
         </div>
 
         <!-- P7: Japandi Hydraulic Bed -->
-        <div class="portfolio-card card-luxury reveal-init flex flex-col bg-brand-card rounded-2xl overflow-hidden border border-stone-800 cursor-pointer group"
+        <div class="portfolio-card card-luxury tilt-card reveal-init flex flex-col bg-brand-card rounded-2xl overflow-hidden border border-stone-800 cursor-pointer group"
              data-category="bed"
              data-title="Japandi Hydraulic Platform Bed"
              data-loc="Matiyari Chauraha, Lucknow - 226028"
@@ -1214,7 +1216,7 @@
         </div>
 
         <!-- P8: Velvet Tufted Bed -->
-        <div class="portfolio-card card-luxury reveal-init delay-100 flex flex-col bg-brand-card rounded-2xl overflow-hidden border border-stone-800 cursor-pointer group"
+        <div class="portfolio-card card-luxury tilt-card reveal-init delay-100 flex flex-col bg-brand-card rounded-2xl overflow-hidden border border-stone-800 cursor-pointer group"
              data-category="bed"
              data-title="Tufted Velvet King Bed Suite"
              data-loc="Gomti Nagar, Lucknow"
@@ -1238,13 +1240,13 @@
         </div>
 
         <!-- P9: Solid Sheesham Bed -->
-        <div class="portfolio-card card-luxury reveal-init delay-200 flex flex-col bg-brand-card rounded-2xl overflow-hidden border border-stone-800 cursor-pointer group"
+        <div class="portfolio-card card-luxury tilt-card reveal-init delay-200 flex flex-col bg-brand-card rounded-2xl overflow-hidden border border-stone-800 cursor-pointer group"
              data-category="bed"
              data-title="Solid Sheesham Heritage Bed"
              data-loc="Kamta Chauraha, Lucknow"
              data-specs="100% Solid Seasoned Sheesham Wood, Hand-Polished Teak Tone, Heavy Wooden Slats">
           <div class="relative h-64 overflow-hidden img-zoom-container">
-            <img src="https://images.unsplash.com/photo-1540518614846-7ede433c4ef3?auto=format&fit=crop&w=1000&q=80" alt="Sheesham Bed Kamta" class="w-full h-full object-cover">
+            <img src="https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?auto=format&fit=crop&w=1000&q=80" alt="Sheesham Bed Kamta" class="w-full h-full object-cover">
             <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-5">
               <span class="text-xs font-bold text-amber-400 flex items-center gap-1.5">
                 <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zm0 12.5c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
@@ -1262,7 +1264,7 @@
         </div>
 
         <!-- P10: Live-Edge Dining Table -->
-        <div class="portfolio-card card-luxury reveal-init flex flex-col bg-brand-card rounded-2xl overflow-hidden border border-stone-800 cursor-pointer group"
+        <div class="portfolio-card card-luxury tilt-card reveal-init flex flex-col bg-brand-card rounded-2xl overflow-hidden border border-stone-800 cursor-pointer group"
              data-category="living"
              data-title="8-Seater Live-Edge Dining Table"
              data-loc="Chinhat, Faizabad Road, Lucknow"
@@ -1286,7 +1288,7 @@
         </div>
 
         <!-- P11: Curved Bouclé Sofa -->
-        <div class="portfolio-card card-luxury reveal-init delay-100 flex flex-col bg-brand-card rounded-2xl overflow-hidden border border-stone-800 cursor-pointer group"
+        <div class="portfolio-card card-luxury tilt-card reveal-init delay-100 flex flex-col bg-brand-card rounded-2xl overflow-hidden border border-stone-800 cursor-pointer group"
              data-category="living"
              data-title="Curved Luxury Bouclé Sofa"
              data-loc="Faizabad Road Villa, Lucknow"
@@ -1310,7 +1312,7 @@
         </div>
 
         <!-- P12: Italian PU Console Table -->
-        <div class="portfolio-card card-luxury reveal-init delay-200 flex flex-col bg-brand-card rounded-2xl overflow-hidden border border-stone-800 cursor-pointer group"
+        <div class="portfolio-card card-luxury tilt-card reveal-init delay-200 flex flex-col bg-brand-card rounded-2xl overflow-hidden border border-stone-800 cursor-pointer group"
              data-category="living"
              data-title="Italian PU Polished Console Table"
              data-loc="Hazratganj, Lucknow"
@@ -1334,7 +1336,7 @@
         </div>
 
         <!-- P13: Carved Sagwan Door -->
-        <div class="portfolio-card card-luxury reveal-init flex flex-col bg-brand-card rounded-2xl overflow-hidden border border-stone-800 cursor-pointer group"
+        <div class="portfolio-card card-luxury tilt-card reveal-init flex flex-col bg-brand-card rounded-2xl overflow-hidden border border-stone-800 cursor-pointer group"
              data-category="doors"
              data-title="Sagwan Carved Main Entrance Door"
              data-loc="Shaheed Path Villa, Lucknow"
@@ -1358,7 +1360,7 @@
         </div>
 
         <!-- P14: Backlit Pooja Mandir Jali -->
-        <div class="portfolio-card card-luxury reveal-init delay-100 flex flex-col bg-brand-card rounded-2xl overflow-hidden border border-stone-800 cursor-pointer group"
+        <div class="portfolio-card card-luxury tilt-card reveal-init delay-100 flex flex-col bg-brand-card rounded-2xl overflow-hidden border border-stone-800 cursor-pointer group"
              data-category="doors"
              data-title="Backlit CNC Pooja Mandir &amp; Jali"
              data-loc="Jankipuram, Lucknow"
@@ -1382,7 +1384,7 @@
         </div>
 
         <!-- P15: Fluted TV Media Wall -->
-        <div class="portfolio-card card-luxury reveal-init delay-200 flex flex-col bg-brand-card rounded-2xl overflow-hidden border border-stone-800 cursor-pointer group"
+        <div class="portfolio-card card-luxury tilt-card reveal-init delay-200 flex flex-col bg-brand-card rounded-2xl overflow-hidden border border-stone-800 cursor-pointer group"
              data-category="doors"
              data-title="Fluted Louver TV Media Backdrop"
              data-loc="Sushant Golf City, Lucknow"
@@ -1406,7 +1408,7 @@
         </div>
 
         <!-- P16: Designer False Ceiling -->
-        <div class="portfolio-card card-luxury reveal-init flex flex-col bg-brand-card rounded-2xl overflow-hidden border border-stone-800 cursor-pointer group"
+        <div class="portfolio-card card-luxury tilt-card reveal-init flex flex-col bg-brand-card rounded-2xl overflow-hidden border border-stone-800 cursor-pointer group"
              data-category="decor"
              data-title="Architectural False Ceiling &amp; Cove Lights"
              data-loc="Gomti Nagar Extension, Lucknow"
@@ -1430,7 +1432,7 @@
         </div>
 
         <!-- P17: 3D Wallpaper Feature Wall -->
-        <div class="portfolio-card card-luxury reveal-init delay-100 flex flex-col bg-brand-card rounded-2xl overflow-hidden border border-stone-800 cursor-pointer group"
+        <div class="portfolio-card card-luxury tilt-card reveal-init delay-100 flex flex-col bg-brand-card rounded-2xl overflow-hidden border border-stone-800 cursor-pointer group"
              data-category="decor"
              data-title="Luxury Textured 3D Feature Wallpaper"
              data-loc="Indira Nagar, Sector 18, Lucknow"
@@ -1454,7 +1456,7 @@
         </div>
 
         <!-- P18: Turnkey Villa Renovation -->
-        <div class="portfolio-card card-luxury reveal-init delay-200 flex flex-col bg-brand-card rounded-2xl overflow-hidden border border-stone-800 cursor-pointer group"
+        <div class="portfolio-card card-luxury tilt-card reveal-init delay-200 flex flex-col bg-brand-card rounded-2xl overflow-hidden border border-stone-800 cursor-pointer group"
              data-category="decor"
              data-title="Turnkey Luxury Home Renovation"
              data-loc="Matiyari, Near Chinhat, Lucknow - 226028"
@@ -1844,7 +1846,9 @@
      target="_blank" 
      rel="noopener noreferrer" 
      aria-label="Chat directly with Prof. Vijay Sharma on WhatsApp">
-    <svg class="w-9 h-9 fill-current" viewBox="0 0 24 24">
+    <div class="radar-ring"></div>
+    <div class="radar-ring" style="animation-delay: 0.8s;"></div>
+    <svg class="w-9 h-9 fill-current relative z-10" viewBox="0 0 24 24">
       <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0012.04 2zm.02 16.5c-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.13 8.13 0 01-1.25-4.32c0-4.51 3.67-8.18 8.19-8.18 2.19 0 4.24.85 5.79 2.4 1.54 1.55 2.4 3.61 2.4 5.8 0 4.51-3.67 8.16-8.44 8.16zm4.51-6.13c-.25-.12-1.47-.72-1.7-.81-.23-.08-.39-.12-.56.12-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-2-1.23-.74-.66-1.24-1.47-1.39-1.72-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.12-.15.17-.25.25-.42.08-.17.04-.31-.02-.44-.06-.12-.56-1.35-.76-1.85-.2-.49-.4-.42-.56-.43h-.48c-.17 0-.44.06-.67.31-.23.25-.88.86-.88 2.1 0 1.24.9 2.44 1.03 2.61.12.17 1.77 2.7 4.29 3.79.6.26 1.07.41 1.43.53.6.19 1.15.17 1.58.1.49-.07 1.47-.6 1.68-1.18.21-.58.21-1.08.15-1.18-.06-.11-.23-.17-.48-.29z"/>
     </svg>
     <span class="absolute right-20 bg-stone-900 border border-emerald-500/40 text-white font-bold text-xs py-2 px-3.5 rounded-xl whitespace-nowrap shadow-xl pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity">
@@ -1941,6 +1945,6 @@
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
   </script>
-  <script src="js/main.js?v=2.2"></script>
+  <script src="js/main.js?v=2.3"></script>
 </body>
 </html>
