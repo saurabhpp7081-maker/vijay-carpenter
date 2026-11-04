@@ -106,7 +106,7 @@ document.addEventListener('DOMContentLoaded', () => {
       tag: "100% Solid Seasoned Sagwan",
       desc: "Gold standard of Indian woodworking. Naturally resistant to termites, moisture and cracking. Unmatched warm golden honey tone that ages gracefully over 50+ years.",
       specs: ["Lifespan: 50+ Years", "Termite Proof: 100% Guaranteed", "Best For: Main Entrance Doors, Pooja Mandir, Solid Dining Sets"],
-      price: "₹3,500 - ₹5,500 / cu.ft",
+      price: "Custom Quote On Request",
       img: "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=800&q=80"
     },
     sheesham: {
@@ -114,7 +114,7 @@ document.addEventListener('DOMContentLoaded', () => {
       tag: "Heavy Density Solid Hardwood",
       desc: "Distinctive two-tone natural wood grain with extreme load-bearing strength. Perfect for heavy hydraulic box beds, 8-seater dining tables and luxury sofa frames.",
       specs: ["Lifespan: 40+ Years", "Finish: High Gloss / Matte PU", "Best For: Hydraulic Beds, Dining Tables, Sofa Frames"],
-      price: "₹1,800 - ₹2,800 / cu.ft",
+      price: "Custom Quote On Request",
       img: "https://images.unsplash.com/photo-1533090161767-e6ffed986c88?auto=format&fit=crop&w=800&q=80"
     },
     marineply: {
@@ -122,7 +122,7 @@ document.addEventListener('DOMContentLoaded', () => {
       tag: "Boiling Waterproof Marine Grade",
       desc: "Chemically treated against borer and fungus with 72-hour boiling water resistance. Precision calibrated core ensuring zero warping for modular kitchens and wardrobes.",
       specs: ["Warranty: 15-25 Years Manufacturer Guarantee", "Moisture Proof: 100% BWP Calibrated", "Best For: Modular Kitchen Cabinets, Sliding Wardrobes"],
-      price: "₹95 - ₹160 / sq.ft",
+      price: "Custom Quote On Request",
       img: "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=800&q=80"
     },
     fluted: {
@@ -130,7 +130,7 @@ document.addEventListener('DOMContentLoaded', () => {
       tag: "Modern Architectural Accent",
       desc: "Charcoal and wooden fluted louvers paired with smoked fluted glass for high-end wardrobe shutters, TV wall backdrops and partition screens.",
       specs: ["Style: Japandi & Contemporary", "Lighting: Integrated Sensor LED Profile", "Best For: TV Media Wall, Designer Almirah Shutters"],
-      price: "₹280 - ₹450 / sq.ft",
+      price: "Custom Quote On Request",
       img: "https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=800&q=80"
     },
     italianpu: {
@@ -138,7 +138,7 @@ document.addEventListener('DOMContentLoaded', () => {
       tag: "Mirror-Reflective Luxury Polish",
       desc: "Multi-coat polyurethane Italian wood polish offering scratch-proof, heat-proof and crystal-clear depth that brings old and new wood to showroom life.",
       specs: ["Finish: Gloss / Satin Matte", "Scratch Resistance: Ultra High", "Best For: Dining Table Tops, Sagwan Doors, Antique Furniture"],
-      price: "₹45 - ₹90 / sq.ft",
+      price: "Custom Quote On Request",
       img: "https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=800&q=80"
     }
   };
@@ -181,13 +181,13 @@ document.addEventListener('DOMContentLoaded', () => {
       });
 
       const waMsg = encodeURIComponent(
-        `Hello Prof. Vijay Sharma ji! I am interested in *${data.title}* and would like to build custom furniture for my home in Lucknow using this material. Please share pricing and details.`
+        `Hello Prof. Vijay Sharma ji! I am interested in *${data.title}* and would like to build custom furniture for my home in Lucknow using this material. Please share catalogue details and a quotation.`
       );
       timberWhatsApp.href = `https://wa.me/${CONFIG.whatsappNumber}?text=${waMsg}`;
     });
   });
 
-  // --- 5. Interactive Cost Calculator ---
+  // --- 5. Interactive Project & Quote Planner ---
   const calcService = document.getElementById('calcService');
   const calcSize = document.getElementById('calcSize');
   const calcSizeDisplay = document.getElementById('calcSizeDisplay');
@@ -196,91 +196,81 @@ document.addEventListener('DOMContentLoaded', () => {
   const calcResultDesc = document.getElementById('calcResultDesc');
   const calcWhatsAppBtn = document.getElementById('calcWhatsAppBtn');
 
-  const recalculate = () => {
+  const updatePlanner = () => {
     if (!calcService || !calcSize || !calcMaterial) return;
 
     const service = calcService.value;
     const size = parseFloat(calcSize.value) || 50;
-    const matMult = parseFloat(calcMaterial.value) || 1.25;
 
     if (calcSizeDisplay) calcSizeDisplay.textContent = size;
 
-    let baseRate = 1250;
     let unitLabel = "sq.ft";
     let serviceName = "Modular Kitchen Design";
 
     switch(service) {
       case 'kitchen':
-        baseRate = 1250;
         unitLabel = "sq.ft";
         serviceName = "Modular Kitchen Design";
         break;
       case 'wardrobe':
-        baseRate = 980;
         unitLabel = "sq.ft";
         serviceName = "Custom Sliding Wardrobe";
         break;
       case 'ceiling':
-        baseRate = 110;
         unitLabel = "sq.ft";
         serviceName = "Designer False Ceiling";
         break;
       case 'wallpaper':
-        baseRate = 65;
         unitLabel = "sq.ft";
         serviceName = "Luxury 3D Wallpapers";
         break;
       case 'painting':
-        baseRate = 38;
         unitLabel = "sq.ft";
         serviceName = "Wall Painting & PU Wood Polish";
         break;
       case 'renovation':
-        baseRate = 350;
         unitLabel = "sq.ft";
         serviceName = "Complete Turnkey Home Renovation";
         break;
       case 'bed':
-        baseRate = 18500 / 50; // normalized to scale with slider
         unitLabel = "Double Bed Unit";
         serviceName = "Hydraulic Storage Double Bed";
         break;
       case 'door':
-        baseRate = 4800 / 30;
         unitLabel = "Teak Door Unit";
         serviceName = "Solid Teak Wood Main Door";
         break;
       case 'tv':
-        baseRate = 340;
         unitLabel = "sq.ft";
         serviceName = "Fluted TV Media Unit & Mandir";
         break;
       case 'polish':
-        baseRate = 55;
         unitLabel = "sq.ft";
         serviceName = "Italian PU Wood Polish";
         break;
     }
 
-    const calculated = Math.round(baseRate * size * matMult);
-    const minP = Math.round(calculated * 0.95);
-    const maxP = Math.round(calculated * 1.15);
-
-    calcResultPrice.textContent = `₹${minP.toLocaleString('en-IN')} - ₹${maxP.toLocaleString('en-IN')}`;
-    calcResultDesc.textContent = `Estimated budget for ${size} ${unitLabel} (${serviceName}) with chosen timber & finish grade.`;
-
     const matText = calcMaterial.options[calcMaterial.selectedIndex].text;
+    if (calcResultPrice) {
+      calcResultPrice.textContent = "Free Site Visit & Quote";
+    }
+    if (calcResultDesc) {
+      calcResultDesc.textContent = `Tailored proposal for ${size} ${unitLabel} (${serviceName}) with ${matText}. Prof. Vijay Sharma will take laser measurements at your home for exact estimation.`;
+    }
+
     const waText = encodeURIComponent(
-      `Hello Prof. Vijay Sharma ji (Mama Bhanja Interior)!\nI used the Cost Estimator on your website for:\n• Service: *${serviceName}*\n• Approx Size: *${size} ${unitLabel}*\n• Material / Finish: *${matText}*\n• Estimated Budget: *₹${minP.toLocaleString('en-IN')} - ₹${maxP.toLocaleString('en-IN')}*\n\nPlease arrange a free doorstep visit in Lucknow to take exact measurements and share a final quotation.`
+      `Hello Prof. Vijay Sharma ji (Mama Bhanja Interior)!\nI would like to get a free measurement and customized quote for my home in Lucknow:\n• Service: *${serviceName}*\n• Approx Dimensions: *${size} ${unitLabel}*\n• Material / Finish: *${matText}*\n\nPlease arrange a convenient doorstep visit to inspect site requirements and provide an exact proposal.`
     );
-    calcWhatsAppBtn.href = `https://wa.me/${CONFIG.whatsappNumber}?text=${waText}`;
+    if (calcWhatsAppBtn) {
+      calcWhatsAppBtn.href = `https://wa.me/${CONFIG.whatsappNumber}?text=${waText}`;
+    }
   };
 
   if (calcService && calcSize && calcMaterial) {
-    calcService.addEventListener('change', recalculate);
-    calcSize.addEventListener('input', recalculate);
-    calcMaterial.addEventListener('change', recalculate);
-    recalculate();
+    calcService.addEventListener('change', updatePlanner);
+    calcSize.addEventListener('input', updatePlanner);
+    calcMaterial.addEventListener('change', updatePlanner);
+    updatePlanner();
   }
 
   // --- 6. Portfolio Filter System ---

@@ -13,8 +13,8 @@ An ultra-luxury, high-converting website built for **Mama Bhanja Interior** in L
 - **Tailwind CSS & Custom Design System** with dark obsidian wood and liquid amber gold aesthetics.
 - **Interactive Before & After Transformation Slider** (mouse/touch draggable).
 - **Interactive Timber & Wood Materials Explorer Board** (Sagwan Teak, Sheesham, Century BWP Marine Ply, Fluted Louvers, Italian PU Polish).
-- **Smart Live Cost Estimator Widget** with dynamic calculation & 1-click WhatsApp quote generator.
-- **12 Comprehensive Service Cards** with transparent Lucknow market rates.
+- **Smart Project & Quote Planner Widget** with custom specification & 1-click WhatsApp quote generator.
+- **12 Comprehensive Specialist Service Cards** with bespoke crafting details and instant WhatsApp enquiries.
 - **Filterable Portfolio Showcase** with full-screen Lightbox.
 - **Direct Lead Generation**: 1-click phone dialer, pre-filled WhatsApp chat links (to **+91 8354099023**), and validated enquiry form.
 - **Mobile Sticky Bottom Bar** with quick call and WhatsApp actions.
