@@ -1,17 +1,20 @@
 /**
- * MAMA BHANJA ENTERPRISES - LUCKNOW
- * Master Craftsman: Vijay Sharma | Mobile: +91 7800303433
+ * MAMA BHANJA INTERIOR (मामा भांजा इंटीरियर)
+ * गृहसज्जा एवं नवीनीकरण | "आपके सपनो का घर, हमारा प्रयास!"
+ * निदेशक: प्रोफेसर विजय शर्मा | संपर्क: +91 8354099023
  * Matiyari, Lucknow - 226028, Uttar Pradesh
- * Interactive Core: Before/After Slider, Timber Showcase, Cost Calculator, Lightbox
+ * Specialists in: Home Decor, Modular Kitchen, False Ceiling, Wallpapers, Painting, Renovations
  */
 
 document.addEventListener('DOMContentLoaded', () => {
   const CONFIG = {
-    businessName: "Mama Bhanja Enterprises",
-    artisanName: "Vijay Sharma",
-    phoneDisplay: "+91 7800303433",
-    phoneRaw: "+917800303433",
-    whatsappNumber: "917800303433",
+    businessName: "Mama Bhanja Interior & Enterprises",
+    hindiName: "मामा भांजा इंटीरियर",
+    slogan: "आपके सपनो का घर, हमारा प्रयास!",
+    artisanName: "प्रोफेसर विजय शर्मा (निदेशक)",
+    phoneDisplay: "+91 8354099023",
+    phoneRaw: "+918354099023",
+    whatsappNumber: "918354099023",
     location: "Matiyari Chauraha, Near Chinhat, Lucknow - 226028",
     pincode: "226028"
   };
@@ -218,6 +221,26 @@ document.addEventListener('DOMContentLoaded', () => {
         unitLabel = "sq.ft";
         serviceName = "Sliding Wardrobe";
         break;
+      case 'ceiling':
+        baseRate = 110;
+        unitLabel = "sq.ft";
+        serviceName = "False Ceiling (फॉल्स सीलिंग)";
+        break;
+      case 'wallpaper':
+        baseRate = 65;
+        unitLabel = "sq.ft";
+        serviceName = "Luxury Wallpapers (वॉलपेपर)";
+        break;
+      case 'painting':
+        baseRate = 38;
+        unitLabel = "sq.ft";
+        serviceName = "Home Painting & Polish (पेंटिंग)";
+        break;
+      case 'renovation':
+        baseRate = 350;
+        unitLabel = "sq.ft";
+        serviceName = "Complete Renovation (गृहसज्जा एवं नवीनीकरण)";
+        break;
       case 'bed':
         baseRate = 18500 / 50; // normalized to scale with slider
         unitLabel = "Double Bed Unit";
@@ -245,11 +268,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const maxP = Math.round(calculated * 1.15);
 
     calcResultPrice.textContent = `₹${minP.toLocaleString('en-IN')} - ₹${maxP.toLocaleString('en-IN')}`;
-    calcResultDesc.textContent = `Anumanit kharcha for ${size} ${unitLabel} (${serviceName}) with chosen timber grade.`;
+    calcResultDesc.textContent = `Anumanit kharcha for ${size} ${unitLabel} (${serviceName}) with chosen timber & finish grade.`;
 
     const matText = calcMaterial.options[calcMaterial.selectedIndex].text;
     const waText = encodeURIComponent(
-      `Namaste Vijay Sharma ji!\nMaine aapki website ke Cost Calculator se estimate nikala hai:\n• Service: *${serviceName}*\n• Approx Size: *${size} ${unitLabel}*\n• Material: *${matText}*\n• Estimated Budget: *₹${minP.toLocaleString('en-IN')} - ₹${maxP.toLocaleString('en-IN')}*\n\nKripya mere ghar aakar free mein naap lein aur pakka estimate dein.`
+      `Namaste Prof. Vijay Sharma ji (मामा भांजा इंटीरियर)!\nMaine aapki website ke Cost Calculator se estimate nikala hai:\n• Service: *${serviceName}*\n• Approx Size: *${size} ${unitLabel}*\n• Material / Finish: *${matText}*\n• Estimated Budget: *₹${minP.toLocaleString('en-IN')} - ₹${maxP.toLocaleString('en-IN')}*\n\nKripya mere ghar (Lucknow) aakar free mein naap lein aur pakka estimate dein.`
     );
     calcWhatsAppBtn.href = `https://wa.me/${CONFIG.whatsappNumber}?text=${waText}`;
   };
@@ -311,7 +334,7 @@ document.addEventListener('DOMContentLoaded', () => {
         lightboxSpecs.textContent = `Materials: ${specs}`;
 
         const waText = encodeURIComponent(
-          `Namaste Vijay ji! Maine aapki website par "${title}" (${loc}) ka photo dekha. Mujhe bhi apne ghar par aisa hi kaam karwana hai. Kripya details dein.`
+          `Namaste Prof. Vijay Sharma ji! Maine Mama Bhanja Interior website par "${title}" (${loc}) ka photo dekha. Mujhe bhi apne ghar par aisa hi interior/carpentry kaam karwana hai. Kripya details dein.`
         );
         lightboxWaLink.href = `https://wa.me/${CONFIG.whatsappNumber}?text=${waText}`;
 
@@ -393,7 +416,7 @@ document.addEventListener('DOMContentLoaded', () => {
       submitBtn.innerHTML = `Bheja ja raha hai...`;
 
       const waMsg = encodeURIComponent(
-        `Namaste Vijay Sharma ji!\n\nMera naam: *${name}*\nMobile: *${phone}*\nService: *${service}*\nLucknow Area: *${location}*\nDetails: ${message || 'Ghar par aakar naap lein aur estimate dein.'}`
+        `Namaste Prof. Vijay Sharma ji (मामा भांजा इंटीरियर)!\n\nMera naam: *${name}*\nMobile: *${phone}*\nService Required: *${service}*\nLucknow Area: *${location}*\nDetails: ${message || 'Ghar par aakar free naap lein aur quotation dein.'}`
       );
 
       setTimeout(() => {
@@ -405,7 +428,7 @@ document.addEventListener('DOMContentLoaded', () => {
           formFeedback.innerHTML = `
             <div class="p-4 bg-emerald-950/90 border border-emerald-500/50 rounded-xl text-emerald-200">
               <strong class="text-white text-base">Shukriya, ${name} ji!</strong><br>
-              Aapki enquiry <em>${service}</em> ke liye <strong>Mama Bhanja Enterprises</strong> mein darj ho gayi hai. <strong>Vijay Sharma (+91 7800303433)</strong> aapse jaldi contact karenge.
+              Aapki enquiry <em>${service}</em> ke liye <strong>मामा भांजा इंटीरियर (Mama Bhanja Interior)</strong> mein darj ho gayi hai. <strong>प्रोफेसर विजय शर्मा (+91 8354099023)</strong> aapse jaldi contact karenge.
               <div class="mt-3">
                 <a href="https://wa.me/${CONFIG.whatsappNumber}?text=${waMsg}" target="_blank" class="inline-flex items-center gap-2 bg-emerald-500 hover:bg-emerald-400 text-black font-extrabold px-4 py-2.5 rounded-lg text-sm transition-all shadow-lg">
                   Direct WhatsApp Par Message Bhejein &rarr;
@@ -422,9 +445,9 @@ document.addEventListener('DOMContentLoaded', () => {
   // --- 10. Service Card WhatsApp Triggers ---
   document.querySelectorAll('[data-service-wa]').forEach(el => {
     const sName = el.getAttribute('data-service-wa') || 'Carpentry';
-    const msg = encodeURIComponent(`Namaste Vijay ji! Mujhe Mama Bhanja Enterprises se Lucknow mein *${sName}* ka kaam karwana hai. Kripya rates aur estimation share karein.`);
+    const msg = encodeURIComponent(`Namaste Prof. Vijay Sharma ji! Mujhe Mama Bhanja Interior se Lucknow mein *${sName}* ka kaam karwana hai. Kripya rates aur estimation share karein.`);
     el.href = `https://wa.me/${CONFIG.whatsappNumber}?text=${msg}`;
   });
 
-  console.log("Mama Bhanja Enterprises Master UI Engine Ready.");
+  console.log("Mama Bhanja Interior Master UI Engine Ready.");
 });
