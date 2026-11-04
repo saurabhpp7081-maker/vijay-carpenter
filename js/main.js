@@ -682,19 +682,53 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // --- 15. Background Video Smart Observer (Pause off-screen for 60fps smoothness) ---
-  const bgVideos = document.querySelectorAll('.video-bg-container video');
+  // --- 15. Background Videos Auto-Play & Smooth Observer ---
+  const bgVideos = document.querySelectorAll('.video-bg-container video, video.bg-video');
+  bgVideos.forEach(video => {
+    video.muted = true;
+    video.defaultMuted = true;
+    video.playsInline = true;
+    video.setAttribute('muted', '');
+    video.setAttribute('playsinline', '');
+    video.setAttribute('webkit-playsinline', '');
+    video.setAttribute('loop', '');
+
+    const tryPlay = () => {
+      const p = video.play();
+      if (p !== undefined) {
+        p.catch(() => {
+          // Retry on first user scroll or tap if autoplay policy blocked it
+          const userPlay = () => {
+            video.play().catch(() => {});
+            ['click', 'touchstart', 'scroll', 'mousemove'].forEach(ev => {
+              window.removeEventListener(ev, userPlay);
+            });
+          };
+          ['click', 'touchstart', 'scroll', 'mousemove'].forEach(ev => {
+            window.addEventListener(ev, userPlay, { passive: true, once: true });
+          });
+        });
+      }
+    };
+
+    // Try immediately
+    tryPlay();
+    // Also try on loadeddata
+    video.addEventListener('loadeddata', tryPlay, { once: true });
+  });
+
+  // Only pause videos when deeply out of view (below 0 threshold)
   if ('IntersectionObserver' in window && bgVideos.length > 0) {
     const videoObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         const video = entry.target;
         if (entry.isIntersecting) {
           video.play().catch(() => {});
-        } else {
+        } else if (entry.boundingClientRect.top > window.innerHeight * 1.5 || entry.boundingClientRect.bottom < -window.innerHeight * 0.5) {
           video.pause();
         }
       });
-    }, { threshold: 0.1 });
+    }, { threshold: 0.05, rootMargin: '100px 0px 100px 0px' });
     bgVideos.forEach(v => videoObserver.observe(v));
   }
 
