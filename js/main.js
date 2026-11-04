@@ -1,5 +1,5 @@
 /**
- * VIJAY CARPENTER - LUCKNOW
+ * MAMA BHANJA ENTERPRISES - LUCKNOW
  * Master Craftsman: Vijay Sharma | Mobile: +91 7800303433
  * Matiyari, Lucknow - 226028, Uttar Pradesh
  * Interactive Core: Before/After Slider, Timber Showcase, Cost Calculator, Lightbox
@@ -7,7 +7,7 @@
 
 document.addEventListener('DOMContentLoaded', () => {
   const CONFIG = {
-    businessName: "Vijay Carpenter",
+    businessName: "Mama Bhanja Enterprises",
     artisanName: "Vijay Sharma",
     phoneDisplay: "+91 7800303433",
     phoneRaw: "+917800303433",
@@ -405,7 +405,7 @@ document.addEventListener('DOMContentLoaded', () => {
           formFeedback.innerHTML = `
             <div class="p-4 bg-emerald-950/90 border border-emerald-500/50 rounded-xl text-emerald-200">
               <strong class="text-white text-base">Shukriya, ${name} ji!</strong><br>
-              Aapki enquiry <em>${service}</em> ke liye darj ho gayi hai. <strong>Vijay Sharma (+91 7800303433)</strong> aapse jaldi contact karenge.
+              Aapki enquiry <em>${service}</em> ke liye <strong>Mama Bhanja Enterprises</strong> mein darj ho gayi hai. <strong>Vijay Sharma (+91 7800303433)</strong> aapse jaldi contact karenge.
               <div class="mt-3">
                 <a href="https://wa.me/${CONFIG.whatsappNumber}?text=${waMsg}" target="_blank" class="inline-flex items-center gap-2 bg-emerald-500 hover:bg-emerald-400 text-black font-extrabold px-4 py-2.5 rounded-lg text-sm transition-all shadow-lg">
                   Direct WhatsApp Par Message Bhejein &rarr;
@@ -422,9 +422,9 @@ document.addEventListener('DOMContentLoaded', () => {
   // --- 10. Service Card WhatsApp Triggers ---
   document.querySelectorAll('[data-service-wa]').forEach(el => {
     const sName = el.getAttribute('data-service-wa') || 'Carpentry';
-    const msg = encodeURIComponent(`Namaste Vijay ji! Mujhe Lucknow mein *${sName}* ka kaam karwana hai. Kripya rates aur estimation share karein.`);
+    const msg = encodeURIComponent(`Namaste Vijay ji! Mujhe Mama Bhanja Enterprises se Lucknow mein *${sName}* ka kaam karwana hai. Kripya rates aur estimation share karein.`);
     el.href = `https://wa.me/${CONFIG.whatsappNumber}?text=${msg}`;
   });
 
-  console.log("Vijay Carpenter Master UI Engine Ready.");
+  console.log("Mama Bhanja Enterprises Master UI Engine Ready.");
 });

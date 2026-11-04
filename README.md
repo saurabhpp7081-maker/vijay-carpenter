@@ -1,12 +1,13 @@
-# Vijay Carpenter - Lucknow
+# Mama Bhanja Enterprises - Lucknow
 ### Premium Custom Furniture & Carpentry Website
-Master Craftsman: **Vijay Sharma** | Mobile: **+91 7800303433**  
-Location: **Matiyari Chauraha, Near Chinhat, Lucknow - 226028, Uttar Pradesh**
+Head Craftsman: **Vijay Sharma** | Mobile: **+91 7800303433**  
+Location: **Matiyari Chauraha, Near Chinhat, Lucknow - 226028, Uttar Pradesh**  
+Domain: **mamabhanjaenterprises.com**
 
 ---
 
 ## 🌟 Overview
-An ultra-luxury, high-converting website built for **Vijay Carpenter** in Lucknow featuring:
+An ultra-luxury, high-converting website built for **Mama Bhanja Enterprises** in Lucknow featuring:
 - **Tailwind CSS & Custom Design System** with dark obsidian wood and liquid amber gold aesthetics.
 - **Interactive Before & After Transformation Slider** (mouse/touch draggable).
 - **Interactive Timber & Wood Materials Explorer Board** (Sagwan Teak, Sheesham, Century BWP Marine Ply, Fluted Glass, Italian PU Polish).

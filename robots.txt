@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.vijaycarpenterlucknow.com/sitemap.xml
+Sitemap: https://www.mamabhanjaenterprises.com/sitemap.xml
