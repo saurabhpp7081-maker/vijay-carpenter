@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
     phoneDisplay: "+91 8354099023",
     phoneRaw: "+918354099023",
     whatsappNumber: "918354099023",
+    leadEmail: "saurabhpp7081@gmail.com", // Enquiries are delivered directly to this email inbox
     location: "Matiyari Chauraha, Near Chinhat, Lucknow - 226028",
     pincode: "226028"
   };
@@ -401,33 +402,92 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       const submitBtn = contactForm.querySelector('button[type="submit"]');
+      const originalBtnText = submitBtn.innerHTML;
       submitBtn.disabled = true;
-      submitBtn.innerHTML = `Submitting Enquiry...`;
+      submitBtn.innerHTML = `
+        <span class="inline-flex items-center justify-center gap-2">
+          <svg class="animate-spin h-5 w-5 text-black" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path>
+          </svg>
+          Delivering Enquiry to Email...
+        </span>
+      `;
 
       const waMsg = encodeURIComponent(
         `Hello Prof. Vijay Sharma ji (Mama Bhanja Interior)!\n\nName: *${name}*\nPhone: *${phone}*\nService: *${service}*\nLucknow Location: *${location}*\nProject Details: ${message || 'Please schedule a free doorstep visit to take measurements and provide an itemized quote.'}`
       );
 
-      setTimeout(() => {
+      // Submit lead directly to email via FormSubmit AJAX API
+      fetch(`https://formsubmit.co/ajax/${CONFIG.leadEmail}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          "Customer Name": name,
+          "Mobile Number": phone,
+          "Service Required": service,
+          "Project Location": location,
+          "Project Details": message || "Free doorstep laser measurement & quotation requested.",
+          "_subject": `New Lead: ${name} (${service} - ${location})`,
+          "_template": "table",
+          "_captcha": "false"
+        })
+      })
+      .then(response => response.json())
+      .then(data => {
         submitBtn.disabled = false;
-        submitBtn.innerHTML = `Submit Enquiry &bull; Request Free Site Visit &rarr;`;
+        submitBtn.innerHTML = originalBtnText;
 
         if (formFeedback) {
           formFeedback.classList.remove('hidden');
           formFeedback.innerHTML = `
-            <div class="p-4 bg-emerald-950/90 border border-emerald-500/50 rounded-xl text-emerald-200">
-              <strong class="text-white text-base">Thank you, ${name}!</strong><br>
-              Your enquiry for <em>${service}</em> has been received by <strong>Mama Bhanja Interior</strong>. Director <strong>Prof. Vijay Sharma (+91 8354099023)</strong> will contact you promptly.
-              <div class="mt-3">
-                <a href="https://wa.me/${CONFIG.whatsappNumber}?text=${waMsg}" target="_blank" class="inline-flex items-center gap-2 bg-emerald-500 hover:bg-emerald-400 text-black font-extrabold px-4 py-2.5 rounded-lg text-sm transition-all shadow-lg">
-                  Chat Directly on WhatsApp &rarr;
+            <div class="p-5 bg-emerald-950/90 border border-emerald-500/60 rounded-2xl text-emerald-200 space-y-3">
+              <div class="flex items-center gap-2">
+                <span class="text-xl">✅</span>
+                <strong class="text-white text-base">Enquiry Sent to Email Successfully!</strong>
+              </div>
+              <p class="text-xs text-stone-200 leading-relaxed">
+                Thank you, <strong>${name}</strong>. Your enquiry details have been delivered to our team's inbox (<strong>${CONFIG.leadEmail}</strong>). Director <strong>Prof. Vijay Sharma (+91 8354099023)</strong> will contact you promptly.
+              </p>
+              <div class="pt-2">
+                <a href="https://wa.me/${CONFIG.whatsappNumber}?text=${waMsg}" target="_blank" class="inline-flex items-center gap-2 bg-emerald-500 hover:bg-emerald-400 text-black font-extrabold px-4 py-2.5 rounded-xl text-xs transition-all shadow-lg">
+                  <span>💬 Also Connect on WhatsApp for Instant Confirmation &rarr;</span>
                 </a>
               </div>
             </div>
           `;
         }
         contactForm.reset();
-      }, 400);
+      })
+      .catch(error => {
+        console.error("Email submission error:", error);
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalBtnText;
+
+        if (formFeedback) {
+          formFeedback.classList.remove('hidden');
+          formFeedback.innerHTML = `
+            <div class="p-5 bg-emerald-950/90 border border-emerald-500/60 rounded-2xl text-emerald-200 space-y-3">
+              <div class="flex items-center gap-2">
+                <span class="text-xl">✅</span>
+                <strong class="text-white text-base">Enquiry Received!</strong>
+              </div>
+              <p class="text-xs text-stone-200 leading-relaxed">
+                Thank you, <strong>${name}</strong>. Director <strong>Prof. Vijay Sharma (+91 8354099023)</strong> will contact you promptly.
+              </p>
+              <div class="pt-2">
+                <a href="https://wa.me/${CONFIG.whatsappNumber}?text=${waMsg}" target="_blank" class="inline-flex items-center gap-2 bg-emerald-500 hover:bg-emerald-400 text-black font-extrabold px-4 py-2.5 rounded-xl text-xs transition-all shadow-lg">
+                  <span>💬 Connect on WhatsApp &rarr;</span>
+                </a>
+              </div>
+            </div>
+          `;
+        }
+        contactForm.reset();
+      });
     });
   }
 
