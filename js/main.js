@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
     phoneRaw: "+918354099023",
     whatsappNumber: "918354099023",
     leadEmail: "saurabhpp7081@gmail.com",
-    web3formsAccessKey: "YOUR_ACCESS_KEY_HERE", // Replace with free Access Key from web3forms.com
+    web3formsAccessKey: "9a69c94f-9f72-4a97-9c17-70d4a9da8f2c", // Replace with free Access Key from web3forms.com
     location: "Matiyari Chauraha, Near Chinhat, Lucknow - 226028",
     pincode: "226028"
   };
@@ -419,39 +419,20 @@ document.addEventListener('DOMContentLoaded', () => {
         `Hello Prof. Vijay Sharma ji (Mama Bhanja Interior)!\n\nName: *${name}*\nPhone: *${phone}*\nService: *${service}*\nLucknow Location: *${location}*\nProject Details: ${message || 'Please schedule a free doorstep visit to take measurements and provide an itemized quote.'}`
       );
 
-      // Submit lead directly to email (Supports Web3Forms & FormSubmit)
-      const isWeb3 = CONFIG.web3formsAccessKey && CONFIG.web3formsAccessKey !== "YOUR_ACCESS_KEY_HERE";
-      const submitEndpoint = isWeb3 
-        ? "https://api.web3forms.com/submit"
-        : `https://formsubmit.co/ajax/${CONFIG.leadEmail}`;
+      // Submit lead directly to email via Web3Forms
+      const formData = new FormData();
+      formData.append("access_key", CONFIG.web3formsAccessKey);
+      formData.append("name", name);
+      formData.append("phone", phone);
+      formData.append("service", service);
+      formData.append("location", location);
+      formData.append("message", message || "Free doorstep laser measurement & quotation requested.");
+      formData.append("subject", `New Lead: ${name} (${service} - ${location})`);
+      formData.append("from_name", "Mama Bhanja Interior Website");
 
-      const payload = isWeb3 ? {
-        access_key: CONFIG.web3formsAccessKey,
-        name: name,
-        phone: phone,
-        service: service,
-        location: location,
-        message: message || "Free doorstep laser measurement & quotation requested.",
-        subject: `New Lead: ${name} (${service} - ${location})`,
-        from_name: "Mama Bhanja Interior Website"
-      } : {
-        "Customer Name": name,
-        "Mobile Number": phone,
-        "Service Required": service,
-        "Project Location": location,
-        "Project Details": message || "Free doorstep laser measurement & quotation requested.",
-        "_subject": `New Lead: ${name} (${service} - ${location})`,
-        "_template": "table",
-        "_captcha": "false"
-      };
-
-      fetch(submitEndpoint, {
+      fetch("https://api.web3forms.com/submit", {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        },
-        body: JSON.stringify(payload)
+        body: formData
       })
       .then(response => response.json())
       .then(data => {
