@@ -14,7 +14,8 @@ document.addEventListener('DOMContentLoaded', () => {
     phoneDisplay: "+91 8354099023",
     phoneRaw: "+918354099023",
     whatsappNumber: "918354099023",
-    leadEmail: "saurabhpp7081@gmail.com", // Enquiries are delivered directly to this email inbox
+    leadEmail: "saurabhpp7081@gmail.com",
+    web3formsAccessKey: "YOUR_ACCESS_KEY_HERE", // Replace with free Access Key from web3forms.com
     location: "Matiyari Chauraha, Near Chinhat, Lucknow - 226028",
     pincode: "226028"
   };
@@ -418,23 +419,39 @@ document.addEventListener('DOMContentLoaded', () => {
         `Hello Prof. Vijay Sharma ji (Mama Bhanja Interior)!\n\nName: *${name}*\nPhone: *${phone}*\nService: *${service}*\nLucknow Location: *${location}*\nProject Details: ${message || 'Please schedule a free doorstep visit to take measurements and provide an itemized quote.'}`
       );
 
-      // Submit lead directly to email via FormSubmit AJAX API
-      fetch(`https://formsubmit.co/ajax/${CONFIG.leadEmail}`, {
+      // Submit lead directly to email (Supports Web3Forms & FormSubmit)
+      const isWeb3 = CONFIG.web3formsAccessKey && CONFIG.web3formsAccessKey !== "YOUR_ACCESS_KEY_HERE";
+      const submitEndpoint = isWeb3 
+        ? "https://api.web3forms.com/submit"
+        : `https://formsubmit.co/ajax/${CONFIG.leadEmail}`;
+
+      const payload = isWeb3 ? {
+        access_key: CONFIG.web3formsAccessKey,
+        name: name,
+        phone: phone,
+        service: service,
+        location: location,
+        message: message || "Free doorstep laser measurement & quotation requested.",
+        subject: `New Lead: ${name} (${service} - ${location})`,
+        from_name: "Mama Bhanja Interior Website"
+      } : {
+        "Customer Name": name,
+        "Mobile Number": phone,
+        "Service Required": service,
+        "Project Location": location,
+        "Project Details": message || "Free doorstep laser measurement & quotation requested.",
+        "_subject": `New Lead: ${name} (${service} - ${location})`,
+        "_template": "table",
+        "_captcha": "false"
+      };
+
+      fetch(submitEndpoint, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           'Accept': 'application/json'
         },
-        body: JSON.stringify({
-          "Customer Name": name,
-          "Mobile Number": phone,
-          "Service Required": service,
-          "Project Location": location,
-          "Project Details": message || "Free doorstep laser measurement & quotation requested.",
-          "_subject": `New Lead: ${name} (${service} - ${location})`,
-          "_template": "table",
-          "_captcha": "false"
-        })
+        body: JSON.stringify(payload)
       })
       .then(response => response.json())
       .then(data => {
