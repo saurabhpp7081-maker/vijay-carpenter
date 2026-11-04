@@ -1,17 +1,16 @@
 /**
- * MAMA BHANJA INTERIOR (मामा भांजा इंटीरियर)
- * गृहसज्जा एवं नवीनीकरण | "आपके सपनो का घर, हमारा प्रयास!"
- * निदेशक: प्रोफेसर विजय शर्मा | संपर्क: +91 8354099023
+ * MAMA BHANJA INTERIOR
+ * Home Decor & Renovations | "Your Dream Home, Our Passionate Craft!"
+ * Director: Prof. Vijay Sharma | Contact: +91 8354099023
  * Matiyari, Lucknow - 226028, Uttar Pradesh
  * Specialists in: Home Decor, Modular Kitchen, False Ceiling, Wallpapers, Painting, Renovations
  */
 
 document.addEventListener('DOMContentLoaded', () => {
   const CONFIG = {
-    businessName: "Mama Bhanja Interior & Enterprises",
-    hindiName: "मामा भांजा इंटीरियर",
-    slogan: "आपके सपनो का घर, हमारा प्रयास!",
-    artisanName: "प्रोफेसर विजय शर्मा (निदेशक)",
+    businessName: "Mama Bhanja Interior",
+    tagline: "Your Dream Home, Our Passionate Craft!",
+    artisanName: "Prof. Vijay Sharma (Director)",
     phoneDisplay: "+91 8354099023",
     phoneRaw: "+918354099023",
     whatsappNumber: "918354099023",
@@ -106,7 +105,7 @@ document.addEventListener('DOMContentLoaded', () => {
       title: "Burma & CP Teak (Sagwan)",
       tag: "100% Solid Seasoned Sagwan",
       desc: "Gold standard of Indian woodworking. Naturally resistant to termites, moisture and cracking. Unmatched warm golden honey tone that ages gracefully over 50+ years.",
-      specs: ["Lifespan: 50+ Saal", "Termite Proof: 100% Guaranteed", "Best For: Main Entrance Doors, Pooja Mandir, Solid Dining Sets"],
+      specs: ["Lifespan: 50+ Years", "Termite Proof: 100% Guaranteed", "Best For: Main Entrance Doors, Pooja Mandir, Solid Dining Sets"],
       price: "₹3,500 - ₹5,500 / cu.ft",
       img: "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=800&q=80"
     },
@@ -114,7 +113,7 @@ document.addEventListener('DOMContentLoaded', () => {
       title: "Pure Solid Sheesham (Indian Rosewood)",
       tag: "Heavy Density Solid Hardwood",
       desc: "Distinctive two-tone natural wood grain with extreme load-bearing strength. Perfect for heavy hydraulic box beds, 8-seater dining tables and luxury sofa frames.",
-      specs: ["Lifespan: 40+ Saal", "Finish: High Gloss / Matte PU", "Best For: Hydraulic Beds, Dining Tables, Sofa Frames"],
+      specs: ["Lifespan: 40+ Years", "Finish: High Gloss / Matte PU", "Best For: Hydraulic Beds, Dining Tables, Sofa Frames"],
       price: "₹1,800 - ₹2,800 / cu.ft",
       img: "https://images.unsplash.com/photo-1533090161767-e6ffed986c88?auto=format&fit=crop&w=800&q=80"
     },
@@ -122,7 +121,7 @@ document.addEventListener('DOMContentLoaded', () => {
       title: "Century & Greenply 710 BWP Marine Ply",
       tag: "Boiling Waterproof Marine Grade",
       desc: "Chemically treated against borer and fungus with 72-hour boiling water resistance. Precision calibrated core ensuring zero warping for modular kitchens and wardrobes.",
-      specs: ["Warranty: 15-25 Saal Company", "Moisture Proof: 100% BWP Calibrated", "Best For: Modular Kitchen Cabinets, Sliding Wardrobes"],
+      specs: ["Warranty: 15-25 Years Manufacturer Guarantee", "Moisture Proof: 100% BWP Calibrated", "Best For: Modular Kitchen Cabinets, Sliding Wardrobes"],
       price: "₹95 - ₹160 / sq.ft",
       img: "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=800&q=80"
     },
@@ -182,7 +181,7 @@ document.addEventListener('DOMContentLoaded', () => {
       });
 
       const waMsg = encodeURIComponent(
-        `Namaste Vijay Sharma ji! Mujhe *${data.title}* ke baare mein janna hai aur is lakdi se apne ghar (Lucknow) mein furniture banwana hai. Kripya rates batayein.`
+        `Hello Prof. Vijay Sharma ji! I am interested in *${data.title}* and would like to build custom furniture for my home in Lucknow using this material. Please share pricing and details.`
       );
       timberWhatsApp.href = `https://wa.me/${CONFIG.whatsappNumber}?text=${waMsg}`;
     });
@@ -208,58 +207,58 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let baseRate = 1250;
     let unitLabel = "sq.ft";
-    let serviceName = "Modular Kitchen";
+    let serviceName = "Modular Kitchen Design";
 
     switch(service) {
       case 'kitchen':
         baseRate = 1250;
         unitLabel = "sq.ft";
-        serviceName = "Modular Kitchen";
+        serviceName = "Modular Kitchen Design";
         break;
       case 'wardrobe':
         baseRate = 980;
         unitLabel = "sq.ft";
-        serviceName = "Sliding Wardrobe";
+        serviceName = "Custom Sliding Wardrobe";
         break;
       case 'ceiling':
         baseRate = 110;
         unitLabel = "sq.ft";
-        serviceName = "False Ceiling (फॉल्स सीलिंग)";
+        serviceName = "Designer False Ceiling";
         break;
       case 'wallpaper':
         baseRate = 65;
         unitLabel = "sq.ft";
-        serviceName = "Luxury Wallpapers (वॉलपेपर)";
+        serviceName = "Luxury 3D Wallpapers";
         break;
       case 'painting':
         baseRate = 38;
         unitLabel = "sq.ft";
-        serviceName = "Home Painting & Polish (पेंटिंग)";
+        serviceName = "Wall Painting & PU Wood Polish";
         break;
       case 'renovation':
         baseRate = 350;
         unitLabel = "sq.ft";
-        serviceName = "Complete Renovation (गृहसज्जा एवं नवीनीकरण)";
+        serviceName = "Complete Turnkey Home Renovation";
         break;
       case 'bed':
         baseRate = 18500 / 50; // normalized to scale with slider
         unitLabel = "Double Bed Unit";
-        serviceName = "Hydraulic Double Bed";
+        serviceName = "Hydraulic Storage Double Bed";
         break;
       case 'door':
         baseRate = 4800 / 30;
-        unitLabel = "Sagwan Door Unit";
-        serviceName = "Sagwan Teak Main Door";
+        unitLabel = "Teak Door Unit";
+        serviceName = "Solid Teak Wood Main Door";
         break;
       case 'tv':
         baseRate = 340;
         unitLabel = "sq.ft";
-        serviceName = "Fluted TV Unit & Mandir";
+        serviceName = "Fluted TV Media Unit & Mandir";
         break;
       case 'polish':
         baseRate = 55;
         unitLabel = "sq.ft";
-        serviceName = "Italian PU Polish";
+        serviceName = "Italian PU Wood Polish";
         break;
     }
 
@@ -268,11 +267,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const maxP = Math.round(calculated * 1.15);
 
     calcResultPrice.textContent = `₹${minP.toLocaleString('en-IN')} - ₹${maxP.toLocaleString('en-IN')}`;
-    calcResultDesc.textContent = `Anumanit kharcha for ${size} ${unitLabel} (${serviceName}) with chosen timber & finish grade.`;
+    calcResultDesc.textContent = `Estimated budget for ${size} ${unitLabel} (${serviceName}) with chosen timber & finish grade.`;
 
     const matText = calcMaterial.options[calcMaterial.selectedIndex].text;
     const waText = encodeURIComponent(
-      `Namaste Prof. Vijay Sharma ji (मामा भांजा इंटीरियर)!\nMaine aapki website ke Cost Calculator se estimate nikala hai:\n• Service: *${serviceName}*\n• Approx Size: *${size} ${unitLabel}*\n• Material / Finish: *${matText}*\n• Estimated Budget: *₹${minP.toLocaleString('en-IN')} - ₹${maxP.toLocaleString('en-IN')}*\n\nKripya mere ghar (Lucknow) aakar free mein naap lein aur pakka estimate dein.`
+      `Hello Prof. Vijay Sharma ji (Mama Bhanja Interior)!\nI used the Cost Estimator on your website for:\n• Service: *${serviceName}*\n• Approx Size: *${size} ${unitLabel}*\n• Material / Finish: *${matText}*\n• Estimated Budget: *₹${minP.toLocaleString('en-IN')} - ₹${maxP.toLocaleString('en-IN')}*\n\nPlease arrange a free doorstep visit in Lucknow to take exact measurements and share a final quotation.`
     );
     calcWhatsAppBtn.href = `https://wa.me/${CONFIG.whatsappNumber}?text=${waText}`;
   };
@@ -334,7 +333,7 @@ document.addEventListener('DOMContentLoaded', () => {
         lightboxSpecs.textContent = `Materials: ${specs}`;
 
         const waText = encodeURIComponent(
-          `Namaste Prof. Vijay Sharma ji! Maine Mama Bhanja Interior website par "${title}" (${loc}) ka photo dekha. Mujhe bhi apne ghar par aisa hi interior/carpentry kaam karwana hai. Kripya details dein.`
+          `Hello Prof. Vijay Sharma ji! I saw the photo of "${title}" (${loc}) on your Mama Bhanja Interior website. I would like to get similar bespoke interior and woodwork done for my home in Lucknow. Please share details.`
         );
         lightboxWaLink.href = `https://wa.me/${CONFIG.whatsappNumber}?text=${waText}`;
 
@@ -391,47 +390,47 @@ document.addEventListener('DOMContentLoaded', () => {
       const message = contactForm.querySelector('[name="message"]').value.trim();
 
       if (!name || name.length < 2) {
-        alert('Kripya apna poora naam likhein.');
+        alert('Please enter your full name.');
         return;
       }
 
       const phoneRegex = /^[6-9]\d{9}$/;
       if (!phoneRegex.test(phone.replace(/[\s\-\+91]/g, ''))) {
-        alert('Kripya 10-digit sahi mobile number darj karein.');
+        alert('Please enter a valid 10-digit mobile number.');
         return;
       }
 
       if (!service) {
-        alert('Kripya service select karein.');
+        alert('Please select a service.');
         return;
       }
 
       if (!location) {
-        alert('Kripya apna area / locality (e.g. Matiyari, Gomti Nagar) darj karein.');
+        alert('Please enter your locality or colony in Lucknow (e.g. Matiyari, Gomti Nagar).');
         return;
       }
 
       const submitBtn = contactForm.querySelector('button[type="submit"]');
       submitBtn.disabled = true;
-      submitBtn.innerHTML = `Bheja ja raha hai...`;
+      submitBtn.innerHTML = `Submitting Enquiry...`;
 
       const waMsg = encodeURIComponent(
-        `Namaste Prof. Vijay Sharma ji (मामा भांजा इंटीरियर)!\n\nMera naam: *${name}*\nMobile: *${phone}*\nService Required: *${service}*\nLucknow Area: *${location}*\nDetails: ${message || 'Ghar par aakar free naap lein aur quotation dein.'}`
+        `Hello Prof. Vijay Sharma ji (Mama Bhanja Interior)!\n\nName: *${name}*\nPhone: *${phone}*\nService: *${service}*\nLucknow Location: *${location}*\nProject Details: ${message || 'Please schedule a free doorstep visit to take measurements and provide an itemized quote.'}`
       );
 
       setTimeout(() => {
         submitBtn.disabled = false;
-        submitBtn.innerHTML = `Enquiry Bhejein &bull; Free Site Visit Payein &rarr;`;
+        submitBtn.innerHTML = `Submit Enquiry &bull; Request Free Site Visit &rarr;`;
 
         if (formFeedback) {
           formFeedback.classList.remove('hidden');
           formFeedback.innerHTML = `
             <div class="p-4 bg-emerald-950/90 border border-emerald-500/50 rounded-xl text-emerald-200">
-              <strong class="text-white text-base">Shukriya, ${name} ji!</strong><br>
-              Aapki enquiry <em>${service}</em> ke liye <strong>मामा भांजा इंटीरियर (Mama Bhanja Interior)</strong> mein darj ho gayi hai. <strong>प्रोफेसर विजय शर्मा (+91 8354099023)</strong> aapse jaldi contact karenge.
+              <strong class="text-white text-base">Thank you, ${name}!</strong><br>
+              Your enquiry for <em>${service}</em> has been received by <strong>Mama Bhanja Interior</strong>. Director <strong>Prof. Vijay Sharma (+91 8354099023)</strong> will contact you promptly.
               <div class="mt-3">
                 <a href="https://wa.me/${CONFIG.whatsappNumber}?text=${waMsg}" target="_blank" class="inline-flex items-center gap-2 bg-emerald-500 hover:bg-emerald-400 text-black font-extrabold px-4 py-2.5 rounded-lg text-sm transition-all shadow-lg">
-                  Direct WhatsApp Par Message Bhejein &rarr;
+                  Chat Directly on WhatsApp &rarr;
                 </a>
               </div>
             </div>
@@ -444,10 +443,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // --- 10. Service Card WhatsApp Triggers ---
   document.querySelectorAll('[data-service-wa]').forEach(el => {
-    const sName = el.getAttribute('data-service-wa') || 'Carpentry';
-    const msg = encodeURIComponent(`Namaste Prof. Vijay Sharma ji! Mujhe Mama Bhanja Interior se Lucknow mein *${sName}* ka kaam karwana hai. Kripya rates aur estimation share karein.`);
+    const sName = el.getAttribute('data-service-wa') || 'Carpentry & Interior Work';
+    const msg = encodeURIComponent(`Hello Prof. Vijay Sharma ji! I would like to get *${sName}* done by Mama Bhanja Interior in Lucknow. Please share pricing and catalogue details.`);
     el.href = `https://wa.me/${CONFIG.whatsappNumber}?text=${msg}`;
   });
 
-  console.log("Mama Bhanja Interior Master UI Engine Ready.");
+  console.log("Mama Bhanja Interior UI Engine Initialized Successfully.");
 });
