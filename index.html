@@ -53,7 +53,7 @@
   </script>
 
   <!-- Custom Stylesheet -->
-  <link rel="stylesheet" href="css/style.css?v=2.3">
+  <link rel="stylesheet" href="css/style.css?v=2.4">
 
   <!-- LocalBusiness Schema.org JSON-LD -->
   <script type="application/ld+json">
@@ -206,6 +206,14 @@
        HERO SECTION (High Impact Visuals, Masterpiece Look)
        ========================================================================== -->
   <section id="hero" class="relative pt-8 pb-16 md:pt-16 md:pb-28 overflow-hidden bg-gradient-to-b from-brand-black via-brand-dark to-brand-black">
+    <!-- Cinematic 3D Interior Video Background (Ultra-smooth 60fps) -->
+    <div class="video-bg-container">
+      <video class="opacity-20 scale-105 filter brightness-75 contrast-110" autoplay muted loop playsinline preload="auto">
+        <source src="videos/luxury-interior-loop.mp4" type="video/mp4">
+      </video>
+      <div class="absolute inset-0 bg-gradient-to-r from-brand-black via-brand-black/90 to-brand-black/75"></div>
+      <div class="absolute inset-0 bg-gradient-to-t from-brand-black via-transparent to-brand-black"></div>
+    </div>
     <!-- Ambient glowing blur backdrop -->
     <div class="absolute top-1/4 -left-32 w-96 h-96 bg-amber-500/10 rounded-full blur-[120px] pointer-events-none"></div>
     <div class="absolute top-1/2 -right-32 w-96 h-96 bg-amber-600/10 rounded-full blur-[140px] pointer-events-none"></div>
@@ -344,7 +352,14 @@
        OFFICIAL BOARD SPOTLIGHT: MAMA BHANJA INTERIOR
        ========================================================================== -->
   <section id="banner-spotlight" class="py-12 md:py-16 bg-gradient-to-b from-brand-black via-[#081224] to-brand-dark relative border-b border-amber-500/30 overflow-hidden">
-    <div class="max-w-6xl mx-auto px-4 sm:px-8">
+    <!-- 3D Architectural Render Video Backdrop -->
+    <div class="video-bg-container">
+      <video class="opacity-15 scale-105 filter brightness-70" autoplay muted loop playsinline preload="auto">
+        <source src="videos/3d-interior-render.mp4" type="video/mp4">
+      </video>
+      <div class="absolute inset-0 bg-gradient-to-b from-brand-black via-[#081224]/85 to-brand-dark"></div>
+    </div>
+    <div class="max-w-6xl mx-auto px-4 sm:px-8 relative z-10">
       
       <!-- Header text -->
       <div class="text-center max-w-3xl mx-auto mb-8 space-y-2">
@@ -1719,8 +1734,15 @@
   <!-- ==========================================================================
        CONTACT & ENQUIRY LEAD FORM (Main Conversion Engine)
        ========================================================================== -->
-  <section id="contact" class="py-16 md:py-24 bg-brand-black relative">
-    <div class="max-w-6xl mx-auto px-4 sm:px-8">
+  <section id="contact" class="py-16 md:py-24 bg-brand-black relative overflow-hidden">
+    <!-- Cinematic Ambient Video Background -->
+    <div class="video-bg-container">
+      <video class="opacity-15 scale-105 filter brightness-70" autoplay muted loop playsinline preload="auto">
+        <source src="videos/luxury-interior-loop.mp4" type="video/mp4">
+      </video>
+      <div class="absolute inset-0 bg-gradient-to-t from-brand-black via-brand-black/90 to-brand-black"></div>
+    </div>
+    <div class="max-w-6xl mx-auto px-4 sm:px-8 relative z-10">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-stretch">
         
         <!-- Left: Quick Call / Info (5 cols) -->
@@ -1945,6 +1967,6 @@
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
   </script>
-  <script src="js/main.js?v=2.3"></script>
+  <script src="js/main.js?v=2.4"></script>
 </body>
 </html>

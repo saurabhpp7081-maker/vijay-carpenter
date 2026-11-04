@@ -682,5 +682,21 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  // --- 15. Background Video Smart Observer (Pause off-screen for 60fps smoothness) ---
+  const bgVideos = document.querySelectorAll('.video-bg-container video');
+  if ('IntersectionObserver' in window && bgVideos.length > 0) {
+    const videoObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        const video = entry.target;
+        if (entry.isIntersecting) {
+          video.play().catch(() => {});
+        } else {
+          video.pause();
+        }
+      });
+    }, { threshold: 0.1 });
+    bgVideos.forEach(v => videoObserver.observe(v));
+  }
+
   console.log("Mama Bhanja Interior UI Engine Initialized Successfully.");
 });
