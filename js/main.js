@@ -275,7 +275,7 @@ document.addEventListener('DOMContentLoaded', () => {
     updatePlanner();
   }
 
-  // --- 6. Portfolio Filter System ---
+  // --- 6. Portfolio Filter System with Re-play Animations ---
   const filterBtns = document.querySelectorAll('[data-portfolio-filter]');
   const portfolioItems = document.querySelectorAll('.portfolio-card');
 
@@ -293,6 +293,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const cat = item.getAttribute('data-category');
         if (f === 'all' || cat === f) {
           item.style.display = 'flex';
+          item.classList.remove('portfolio-card-animate');
+          void item.offsetWidth; // Force CSS reflow to replay animation
+          item.classList.add('portfolio-card-animate');
         } else {
           item.style.display = 'none';
         }
@@ -495,6 +498,28 @@ document.addEventListener('DOMContentLoaded', () => {
     const msg = encodeURIComponent(`Hello Prof. Vijay Sharma ji! I would like to get *${sName}* done by Mama Bhanja Interior in Lucknow. Please share pricing and catalogue details.`);
     el.href = `https://wa.me/${CONFIG.whatsappNumber}?text=${msg}`;
   });
+
+  // --- 11. Intersection Observer for Smooth Scroll Reveal Animations ---
+  const revealElements = document.querySelectorAll('.reveal-init, .reveal-left, .reveal-right, .reveal-zoom');
+  if ('IntersectionObserver' in window) {
+    const revealObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('revealed');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      root: null,
+      threshold: 0.12,
+      rootMargin: '0px 0px -40px 0px'
+    });
+
+    revealElements.forEach(el => revealObserver.observe(el));
+  } else {
+    // Fallback if browser doesn't support IntersectionObserver
+    revealElements.forEach(el => el.classList.add('revealed'));
+  }
 
   console.log("Mama Bhanja Interior UI Engine Initialized Successfully.");
 });
